@@ -21,10 +21,14 @@ translate([0,-25,0])trap(penny_d,penny_th);
 //modules ------------------------------------------------------------
 module base(coin_d) { 
     difference() {
-    minkowski() {
-        translate([0,0,0]) sphere(d=coin_d);
-       translate([0,0,-coin_d/2]) #cube(size=[coin_d*1.05,coin_d*1.05,coin_d],center=true); 
-    } 
+        sphere(d=coin_d); 
+        translate([0,0,-coin_d/2]) cube(size=coin_d,center=true);
+       rotate ([54.74,0,0]) rotate ([0,0,45]) translate([coin_d/2,coin_d/2,coin_d/2]) #minkowski(){
+    cube(size=.8*coin_d,center=true);
+      sphere(r=.1*coin_d);    
+         
+}
+       
 }
 }
 module coin(coin_d,coin_th) {
